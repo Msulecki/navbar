@@ -40,9 +40,9 @@ nav {
 }
 
 .submenu {
-  height: 250px;
+  //height: auto;
   width: 240px;
-  transform: scale(0);
+  transform: scaleY(0);
   transform: translateX(180px);
   opacity: 0;
   position: absolute;
@@ -52,14 +52,15 @@ nav {
   top: 41px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-content: center;
   transition: .3s ease-in-out;
-  padding: 1px;
   border-radius: 5px;
   background-size: 200% 200%;
   animation: bgmove 5s ease infinite;
   z-index: -1;
+  border: 1px solid #999;
+  border: 1px solid transparent;
 
 
 @keyframes bgmove {
@@ -90,7 +91,7 @@ nav {
   }
 }
 li:hover>.submenu{
-  transform: scale(1);
+  transform: scaleY(1);
   opacity: 1;
   z-index: 9;
 }

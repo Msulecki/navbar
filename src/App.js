@@ -64,19 +64,24 @@ class App extends Component {
   }
   handleItemHover(type, ev) {
     const offset = ev.target.getBoundingClientRect().left - this.refs.container.getBoundingClientRect().left
-    console.log(type, offset)
-    if (type === 'enter') {
-      document.querySelectorAll('.submenu').forEach(el => {
-        el.style.transform = `translateX(${offset - (ev.target.offsetWidth / 2)}px)`
 
-      })
-    } else if (type === 'leave_') {
-      document.querySelectorAll('.submenu').forEach(el => {
-        el.style.transform = `translateX(${(this.refs.container.offsetWidth / 2) - (el.offsetWidth / 2)}px)`
+    let itemLength = 0
+    let listHeight = 'auto'
+    if (ev.target.className === 'menu__item') {
+      console.log(ev.target.offsetHeight, ev.target.innerHeight);
+      if (type === 'enter') {
 
-      })
+        itemLength = ev.target.children[0].children.length
+        listHeight = (itemLength * (ev.target.offsetHeight + 2)) + 'px'
+
+        document.querySelectorAll('.submenu').forEach(el => {
+          el.style.transform = `translateX(${offset - (ev.target.offsetWidth / 2)}px)`
+          el.style.height = listHeight
+        })
+
+      }
+
     }
-
 
   }
   render() {
@@ -94,27 +99,27 @@ class App extends Component {
           <li
             onMouseLeave={this.handleItemHover.bind(this, 'leave')}
             onMouseEnter={this.handleItemHover.bind(this, 'enter')}
-            className='menu__item'>Main 1<Submenu x='dog' />
+            className='menu__item'>Main 1<Submenu items={['dog', 'cat', 'mouse']} />
           </li>
           <li
             onMouseLeave={this.handleItemHover.bind(this, 'leave')}
             onMouseEnter={this.handleItemHover.bind(this, 'enter')}
-            className='menu__item'>Main 2<Submenu x='cat' />
+            className='menu__item'>Main 2<Submenu items={['car', 'bike', 'plane', 'submarine']} />
           </li>
           <li
             onMouseLeave={this.handleItemHover.bind(this, 'leave')}
             onMouseEnter={this.handleItemHover.bind(this, 'enter')}
-            className='menu__item'>Main 3<Submenu x='fish' />
+            className='menu__item'>Main 3<Submenu items={['vodka', 'beer', 'wine']} />
           </li>
           <li
             onMouseLeave={this.handleItemHover.bind(this, 'leave')}
             onMouseEnter={this.handleItemHover.bind(this, 'enter')}
-            className='menu__item'>Main 4<Submenu x='aligator' />
+            className='menu__item'>Main 4<Submenu items={['html', 'css', 'js', 'php', 'c++', 'ruby']} />
           </li>
           <li
             onMouseLeave={this.handleItemHover.bind(this, 'leave')}
             onMouseEnter={this.handleItemHover.bind(this, 'enter')}
-            className='menu__item'>Main 5<Submenu x='snek' />
+            className='menu__item'>Main 5<Submenu items={['football', 'tennis']} />
           </li>
 
         </ul>
