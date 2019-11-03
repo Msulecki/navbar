@@ -59,6 +59,9 @@ class App extends Component {
         ${this.state.borderImage[2]} ${50 + this.state.gradientOffset}%) 1`
     }
   }
+  handleMouseLeave() {
+    this.classList.remove('submenu--active')
+  }
 
   handleItemHover(type, ev) {
     const offset = ev.target.getBoundingClientRect().left - this.refs.container.getBoundingClientRect().left
@@ -69,17 +72,18 @@ class App extends Component {
       if (type === 'enter') {
         itemLength = ev.target.children[0].children.length
         listHeight = (itemLength * (ev.target.offsetHeight + 2)) + 'px'
+
         document.querySelectorAll('.submenu').forEach(el => {
           el.style.transform = `translateX(${offset - (ev.target.offsetWidth / 2)}px)`
           el.style.height = listHeight
-          el.addEventListener('mouseleave', () => { el.classList.remove('menu__item--active') })
+          el.addEventListener('mouseleave', this.handleMouseLeave)
         })
-        ev.target.children[0].classList.add('menu__item--active')
+        ev.target.children[0].classList.add('submenu--active')
       }
 
       if (type === 'leave') {
         document.querySelectorAll('.submenu').forEach(el => {
-          el.classList.remove('menu__item--active')
+          el.classList.remove('submenu--active')
         })
       }
     }

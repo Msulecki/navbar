@@ -25,7 +25,7 @@ a:active {
 }
 
 .navbar {
-  padding-top: 100px;
+  margin-top: 100px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -33,7 +33,7 @@ a:active {
 
   .menu {
     width: 600px;
-    position: relative;
+    position: absolute;
     border-top: 2px solid hsl(100,100,40);  
     border-image: linear-gradient(90deg, rgb(163, 236, 126) 25%,rgb(66, 238, 250) 50%, rgb(243, 113, 255) 75%) 1;
     box-shadow: 0px 5px 20px -5px rgba(0,0,0,0.3);
@@ -55,12 +55,6 @@ a:active {
         background: hsl(200,00,50);
         color: #000;
         cursor: pointer;
-      }
-
-    //  &:hover > .submenu,
-      &--active {
-        opacity: 1;
-        z-index: 9; 
       }
     }
   }
@@ -84,10 +78,18 @@ a:active {
   transition: .3s ease-out;
   background-size: 300% 300%;
   opacity: 0;
+  visibility: hidden;
   animation: bgmove 5s ease infinite;
   z-index: -1;
+  pointer-events: none;
   
-
+  &--active {
+    visibility: visible;
+    opacity: 1;
+    z-index: 9; 
+    pointer-events: auto;
+    }
+    
   &__item {
     width: 100%;
     padding: 10px 15px;
