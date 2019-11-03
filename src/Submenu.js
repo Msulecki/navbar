@@ -1,15 +1,18 @@
-import React from 'react';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Submenu = (props) => {
     let items = props.items.map((e, i) => (
-        <li key={i}>{e}</li>
+        <li className='submenu__item' key={i}><Link to={e}>{e}</Link></li>
     ))
-    return (
-        <ul className='submenu'>
-            {items}
 
-        </ul>
-    );
+    return (
+        <>
+            <ul className='submenu'>
+                {items}
+            </ul>
+        </>
+    )
 }
 
-export default Submenu;
+export default Submenu
